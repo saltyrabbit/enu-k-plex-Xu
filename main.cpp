@@ -2,6 +2,7 @@
 #define range_of_V 1000000
 
 #include <iostream>
+#include <fstream>
 #include <cstdio>
 #include <algorithm>
 #include <vector>
@@ -18,6 +19,7 @@ set<int> EMPTY1, EMPTY2, V;
 int num_V, num_E;
 
 void ini();
+void fini();
 void FaPlexen_Rec(set<int>& P, set<int>& Cand, set<int>& Excl);
 void update(set<int>& P, set<int>& Cand, set<int>& Excl, set<int>& newCand, set<int>& newExcl);
 int check_k_plex(set<int>& S);
@@ -27,10 +29,25 @@ int degree_in_subgraph(int v, set<int>& S);
 
 int main()
 {
-	ini();
+	fini();
 	FaPlexen_Rec(EMPTY1, V, EMPTY2);
 }
+void fini()
+{
+	ifstream file("graph.txt", ios::in);
+	file >> num_V >> num_E;
+	for (int i = 1; i <= num_V; i++)
+		V.insert(i);
+	for (int i = 1; i <= num_E; i++)
+	{
+		int a, b;
+		file >> a >> b;
+		G[a][b] = G[b][a] = 1;
+	}
 
+	printf("文件读取完成\n输入k\n");
+	scanf("%d", &k);
+}
 void ini()
 {
 	printf("输入点数和边数（点序号从1开始）\n");
