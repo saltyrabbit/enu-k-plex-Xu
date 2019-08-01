@@ -88,7 +88,7 @@ void FaPlexen_Rec(set<int>& P, set<int>& Cand, set<int>& Excl)
 		iter++;
 	}//line 5
 
-	if (updegree >= S.size() - k)
+	if (updegree >= (int)S.size() - k)
 	{
 		int flag = 0;
 		iter = Excl.begin();
@@ -216,7 +216,7 @@ void update(set<int>& P, set<int>& Cand, set<int>& Excl, set<int>& newCand, set<
 			}
 			else
 			{
-				if (P.size() - degree[*iter1] >= k)
+				if ((int)P.size() - degree[*iter1] >= k)
 				{
 					flag = 0;
 					break;
@@ -224,7 +224,7 @@ void update(set<int>& P, set<int>& Cand, set<int>& Excl, set<int>& newCand, set<
 			}
 			iter1++;
 		}
-		if (P.size() + 1 - cnt > k)
+		if ((int)P.size() + 1 - cnt > k)
 			flag = 0;
 		if (flag)
 			newCand.insert(*iter2);
@@ -245,7 +245,7 @@ void update(set<int>& P, set<int>& Cand, set<int>& Excl, set<int>& newCand, set<
 			}
 			else
 			{
-				if (P.size() - degree[*iter1] >= k)
+				if ((int)P.size() - degree[*iter1] >= k)
 				{
 					flag = 0;
 					break;
@@ -253,7 +253,7 @@ void update(set<int>& P, set<int>& Cand, set<int>& Excl, set<int>& newCand, set<
 			}
 			iter1++;
 		}
-		if (P.size() + 1 - cnt > k)
+		if ((int)P.size() + 1 - cnt > k)
 			flag = 0;
 		if (flag)
 			newExcl.insert(*iter2);
@@ -281,7 +281,7 @@ int check_k_plex(set<int>& S)
 	while (iter != S.end())
 	{
 		degree[*iter]=degree_in_subgraph(*iter, S);
-		if (degree[*iter] < S.size() - k)
+		if (degree[*iter] < (int)S.size() - k)
 		{
 			flag = 0;
 			break;
